@@ -8,15 +8,9 @@ namespace Sheduling
     {
         static void Main(string[] args)
         {
-            int[] arrTasks = Console.ReadLine()
-                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
+            int[] arrTasks = ReadInput();           
 
-            int[] arrThreads = Console.ReadLine().
-                Split(" ", StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
+            int[] arrThreads = ReadInput();
 
             Stack<int> tasks = new Stack<int>(arrTasks);
             Queue<int> threads = new Queue<int>(arrThreads);
@@ -47,6 +41,16 @@ namespace Sheduling
                     threads.Dequeue();
                 }               
             }            
+        }
+
+        private static int[] ReadInput()
+        {
+          int[] arr = Console.ReadLine()
+                  .Split( new [] { ", ", " " }, StringSplitOptions.RemoveEmptyEntries)
+                  .Select(int.Parse)
+                  .ToArray();
+
+            return arr;
         }
     }
 }
